@@ -2,8 +2,7 @@ import UIKit
 
 final class ProfileViewController: UIViewController {
     private var label: UILabel?
-    private var image: UIImage?
-    override func viewDidLoad() {
+        override func viewDidLoad() {
         
         super.viewDidLoad()
         
@@ -18,7 +17,6 @@ final class ProfileViewController: UIViewController {
         
         imageProfile.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
         imageProfile.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 32).isActive = true
-        self.image = image
         
         let labelName = UILabel()
         labelName.text = "Екатерина Новикова"
@@ -47,7 +45,7 @@ final class ProfileViewController: UIViewController {
         
         labelLogin.widthAnchor.constraint(equalToConstant: 99).isActive = true
         labelLogin.heightAnchor.constraint(equalToConstant: 18).isActive = true
-    
+        
         
         let labelStatus = UILabel()
         labelStatus.text = "Hello, world!"
@@ -60,28 +58,31 @@ final class ProfileViewController: UIViewController {
         labelStatus.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 162).isActive = true
         
         let button = UIButton.systemButton(
-            with: UIImage(systemName: "ipad.and.arrow.forward")!,
+            with: UIImage(named: "logout_button")!,
             target: self,
             action: #selector(self.didTapButton)
         )
-        button.tintColor = .red
+            button.tintColor = .red
+            
         button.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(button)
+            
         button.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
         button.centerYAnchor.constraint(equalTo: imageProfile.centerYAnchor).isActive = true
+            
+            button.widthAnchor.constraint(equalToConstant: 44).isActive = true
+            button.heightAnchor.constraint(equalToConstant: 44).isActive = true
     }
     @objc
     private func didTapButton() {
-
+        
         label?.removeFromSuperview()
         label = nil
-        image = UIImage(systemName: "person.crop.circle.fill")
         
         for view in view.subviews {
             if view is UILabel {
                 view.removeFromSuperview()
                 
-
             }
         }
     }
