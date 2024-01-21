@@ -2,7 +2,7 @@ import UIKit
 
 final class ProfileViewController: UIViewController {
     private var label: UILabel?
-        override func viewDidLoad() {
+    override func viewDidLoad() {
         
         super.viewDidLoad()
         
@@ -62,16 +62,16 @@ final class ProfileViewController: UIViewController {
             target: self,
             action: #selector(self.didTapButton)
         )
-            button.tintColor = .red
-            
+        button.tintColor = .ypRed
+        
         button.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(button)
-            
+        
         button.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
         button.centerYAnchor.constraint(equalTo: imageProfile.centerYAnchor).isActive = true
-            
-            button.widthAnchor.constraint(equalToConstant: 44).isActive = true
-            button.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        
+        button.widthAnchor.constraint(equalToConstant: 44).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 44).isActive = true
     }
     @objc
     private func didTapButton() {
