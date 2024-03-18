@@ -1,8 +1,27 @@
 import UIKit
 
 final class ProfileViewController: UIViewController {
+    private var labelName = UILabel()
+    private var labelLogin = UILabel()
+    private var labelStatus = UILabel()
     private var label: UILabel?
+    private let profileService = ProfileService.shared
+
     override func viewDidLoad() {
+        super.viewDidLoad()
+
+        loadProfile()
+        
+    }
+        func loadProfile() {
+          guard let profile = profileService.profile else {
+            return
+          }
+          self.labelName.text = profile.name
+          self.labelLogin.text = profile.loginName
+          self.labelStatus.text = profile.bio
+        
+        
         
         super.viewDidLoad()
         
@@ -18,7 +37,6 @@ final class ProfileViewController: UIViewController {
         imageProfile.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
         imageProfile.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 32).isActive = true
         
-        let labelName = UILabel()
         labelName.text = "Екатерина Новикова"
         labelName.font = UIFont.systemFont(ofSize: 23)
         
@@ -33,7 +51,6 @@ final class ProfileViewController: UIViewController {
         labelName.heightAnchor.constraint(equalToConstant: 18).isActive = true
         self.label = labelName
         
-        let labelLogin = UILabel()
         labelLogin.text = "@ekaterina_nov"
         labelLogin.font = UIFont.systemFont(ofSize: 13)
         labelLogin.textColor = .gray
@@ -47,7 +64,6 @@ final class ProfileViewController: UIViewController {
         labelLogin.heightAnchor.constraint(equalToConstant: 18).isActive = true
         
         
-        let labelStatus = UILabel()
         labelStatus.text = "Hello, world!"
         labelStatus.font = UIFont.systemFont(ofSize: 13)
         labelStatus.textColor = .white
@@ -73,6 +89,7 @@ final class ProfileViewController: UIViewController {
         button.widthAnchor.constraint(equalToConstant: 44).isActive = true
         button.heightAnchor.constraint(equalToConstant: 44).isActive = true
     }
+    
     @objc
     private func didTapButton() {
         
