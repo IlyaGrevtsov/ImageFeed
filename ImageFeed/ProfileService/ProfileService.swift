@@ -1,43 +1,52 @@
 import UIKit
+protocol ProfileLoading: AnyObject {
+  func fetchProfile(completion: @escaping (Result<Profile, Error>) -> Void)
+}
 
 final class ProfileService {
     static let shared = ProfileService()
+    private var currentTask: URLSessionTask?
+    private (set) var profile: Profile?
+    private let urlSession = URLSession.shared
+    private let requestBuilder: URLRequestBuilder
     
-    private(set) var profile: Profile?
-    func fetchProfile(_ token: String, completion: @escaping (Result<Profile, Error>) -> Void) {
-        
-    }
     
-    struct ProfileResult: Codable {
-        let userName: String
-        let firstName: String
-        let lastName: String
-        let bio: String
-        
-        enum codingKeys: String, CodingKey {
-            case userName = "username"
-            case firstName = "first_name"
-            case lastName = "last_name"
-            case bio = "bio"
-        }
-    }
-    struct Profile {
-        let userName: String
-        let name: String
-        let loginName: String
-        let bio: String
-    }
-    func makeRequest(code: String) -> URLRequest? {
-        makeRequest(
-            path: "/oauth/token"
-            + "?client_id=\(AccessKey)"
-            + "&&client_secret=\(SecretKey)"
-            + "&&redirect_uri=\(RedirectURI)"
-            + "&&code=\(code)"
-            + "&&grant_type=authorization_code",
-            httpMethod: "POST",
-            baseURL: URL(string: "https://unsplash.com")!
-        )
+    init(requestBuilder: URLRequestBuilder = .shared) {
+      self.requestBuilder = requestBuilder
     }
 }
+private extension ProfileService {
 
+  func makeProfileRequest() -> URLRequest? {
+    requestBuilder.makeHTTPRequest(path: Constants.profileRequestPathString)
+  }
+}
+    extension ProfileService: ProfileLoading {
+        func fetchProfile(completion: @escaping (Result<Profile, Error>) -> Void) {
+            assert(Thread.isMainThread)
+            currentTask?.cancel()
+            
+            guard let request = makeProfileRequest() else {
+                assertionFailure("Invalid Request")
+                completion(.failure(NetworkError.invalidRequest))
+                return
+            }
+            
+            let session = URLSession.shared
+            currentTask = session.objectTask(for: request){
+                [weak self] (response: Result <ProfileResult, Error>) in
+                
+                self?.currentTask = nil
+                switch response {
+                case.success (let profileResult):
+                    let profile = Profile(result: profileResult)
+                    self?.profile = profile
+                    completion(.success(profile))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+        }
+    }
+
+ 
