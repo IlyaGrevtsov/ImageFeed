@@ -1,10 +1,9 @@
 import UIKit
 
 final class SplashViewController: UIViewController {
-    private let ShowAuthenticationScreenSegueIdentifier = "ShowAuthenticationScreen"
     
-  
-    private let profileServis = ProfileService()
+    private let ShowAuthenticationScreenSegueIdentifier = "ShowAuthenticationScreen"
+    private let profileService = ProfileService.shared
     private let storage = OAuth2TokenStorage()
     private let authService = OAuth2Service()
     private var alertPresenter: AlertPresenting?
@@ -110,7 +109,7 @@ extension SplashViewController: AuthViewControllerDelegate {
         }
     }
     private func fetchProfile(completion: @escaping () -> Void) {
-        profileServis.fetchProfile { [weak self] profileResult in
+        profileService.fetchProfile { [weak self] profileResult in
             switch profileResult {
             case .success(let profile):
                 let userName = profile.username

@@ -1,11 +1,17 @@
-import Foundation
-
 struct ProfileResult: Codable {
-    let username: String
+    let userName: String
     let firstName: String?
     let lastName: String?
     let bio: String?
     let profileImage: ProfileImage?
+
+    private enum CodingKeys: String, CodingKey {
+        case userName = "username"
+        case firstName = "first_name"
+        case lastName = "last_name"
+        case bio
+        case profileImage = "profile_image"
+    }
 }
 
 struct Profile {
@@ -30,9 +36,9 @@ extension Profile {
 
   init(result profile: ProfileResult) {
     self.init(
-      username: profile.username,
+      username: profile.userName,
       name: "\(profile.firstName ?? "") \(profile.lastName ?? "")",
-      loginName: "@\(profile.username)",
+      loginName: "@\(profile.userName)",
       bio: profile.bio
     )
   }
