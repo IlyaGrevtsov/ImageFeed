@@ -4,10 +4,12 @@ final class SplashViewController: UIViewController {
     
     private let ShowAuthenticationScreenSegueIdentifier = "ShowAuthenticationScreen"
     private let profileService = ProfileService.shared
+    private let profileImageService = ProfileImageService.shared
     private let storage = OAuth2TokenStorage()
     private let authService = OAuth2Service()
     private var alertPresenter: AlertPresenting?
     private var wasChecked = false
+    static let shared = ProfileImageService()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
@@ -113,6 +115,7 @@ extension SplashViewController: AuthViewControllerDelegate {
             switch profileResult {
             case .success(let profile):
                 let userName = profile.username
+                self?.fetchProfileImage (userName: userName)
                 self?.switchToTabBarController()
             case .failure(let error):
                 self?.showLoginAlert(error: error)
@@ -120,4 +123,21 @@ extension SplashViewController: AuthViewControllerDelegate {
             completion()
         }
     }
+    func fetchProfileImage(userName: String) {
+
+      profileImageService.fetchProfileImageURL(userName: userName) { [weak self] profileImageUrl in
+
+        guard let self else { return }
+
+        switch profileImageUrl {
+        case .success(let mediumPhoto):
+          print("Photo Link:  \(mediumPhoto)")
+        case .failure(let error):
+          self.showLoginAlert(error: error)
+        }
+      }
+    }
+
 }
+
+
