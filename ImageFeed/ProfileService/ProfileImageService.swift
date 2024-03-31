@@ -8,9 +8,9 @@ final class ProfileImageService {
     private var currentTask: URLSessionTask?
     
     func makeProfileRequest(userName: String) -> URLRequest? {
-      requestBuilder.makeHTTPRequest(path: "/users/\(userName)")
+        requestBuilder.makeHTTPRequest(path: "/users/\(userName)")
     }
-   
+    
     func fetchProfileImageURL(userName: String, completion: @escaping (Result<String, Error>) -> Void) {
         assert(Thread.isMainThread)
         currentTask?.cancel()

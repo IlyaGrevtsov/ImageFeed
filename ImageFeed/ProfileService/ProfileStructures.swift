@@ -4,7 +4,7 @@ struct ProfileResult: Codable {
     let lastName: String?
     let bio: String?
     let profileImage: ProfileImage?
-
+    
     private enum CodingKeys: String, CodingKey {
         case userName = "username"
         case firstName = "first_name"
@@ -15,16 +15,16 @@ struct ProfileResult: Codable {
 }
 
 struct Profile {
-  let username: String
-  let name: String
-  let loginName: String
-  let bio: String?
+    let username: String
+    let name: String
+    let loginName: String
+    let bio: String?
 }
 
 struct ProfileImage: Codable {
-  let small: String?
-  let medium: String?
-  let large: String?
+    let small: String?
+    let medium: String?
+    let large: String?
 }
 
 
@@ -33,13 +33,13 @@ struct ProfileImage: Codable {
 // MARK: - Init for ProfileResult
 
 extension Profile {
-
-  init(result profile: ProfileResult) {
-    self.init(
-      username: profile.userName,
-      name: "\(profile.firstName ?? "") \(profile.lastName ?? "")",
-      loginName: "@\(profile.userName)",
-      bio: profile.bio
-    )
-  }
+    
+    init(result profile: ProfileResult) {
+        self.init(
+            username: profile.userName,
+            name: "\(profile.firstName ?? "") \(profile.lastName ?? "")",
+            loginName: "@\(profile.userName)",
+            bio: profile.bio
+        )
+    }
 }

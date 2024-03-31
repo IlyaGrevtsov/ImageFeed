@@ -45,7 +45,7 @@ final class OAuth2Service {
     var isAuthenticated: Bool {
         storage.token != nil 
     }
-
+    
     
     func fetchOAuthToken(with code: String, completion: @escaping (Result<String, Error>) -> Void) {
         
@@ -53,7 +53,7 @@ final class OAuth2Service {
         guard code != lastCode else { return }
         task?.cancel()
         lastCode = code
-        print("✅", "LastCode:",lastCode)
+        print("Done", "LastCode:",lastCode)
         
         guard let request = makeRequest(code: code) else {
             assertionFailure("Error Reguest")
@@ -76,7 +76,7 @@ final class OAuth2Service {
                 completion(.failure(error))
             }
         }
-}
+    }
     
     func makeRequest(code: String) -> URLRequest? {
         

@@ -2,7 +2,7 @@ import Foundation
 import SwiftKeychainWrapper
 
 protocol TokenStorage {
-  var token: String? { get }
+    var token: String? { get }
 }
 
 final class OAuth2TokenStorage {
@@ -22,8 +22,8 @@ extension OAuth2TokenStorage: TokenStorage {
     }
 }
 extension OAuth2TokenStorage {
-
-  func removeToken() -> Bool {
-    keychainWrapper.removeObject(forKey: Constants.bearerToken)
-  }
+    
+    func removeToken() -> Bool {
+        keychainWrapper.removeObject(forKey: Constants.bearerToken)
+    }
 }
