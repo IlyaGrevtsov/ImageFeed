@@ -39,6 +39,8 @@
 		CED5E4FA2B28A56F00CBC5EF /* ImagesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED5E4F92B28A56F00CBC5EF /* ImagesListCell.swift */; };
 		CEE2F33D2B5FE2460011C75B /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2F33C2B5FE2460011C75B /* AuthViewController.swift */; };
 		CEE2F3412B6014210011C75B /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2F3402B6014210011C75B /* WebViewViewController.swift */; };
+		CEFF81FE2BBC7C8700AAF96C /* ImagesListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF81FD2BBC7C8700AAF96C /* ImagesListService.swift */; };
+		CEFF82002BBC7C9E00AAF96C /* ImageListStructures.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF81FF2BBC7C9E00AAF96C /* ImageListStructures.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +94,8 @@
 		CED5E4F92B28A56F00CBC5EF /* ImagesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListCell.swift; sourceTree = "<group>"; };
 		CEE2F33C2B5FE2460011C75B /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		CEE2F3402B6014210011C75B /* WebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
+		CEFF81FD2BBC7C8700AAF96C /* ImagesListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListService.swift; sourceTree = "<group>"; };
+		CEFF81FF2BBC7C9E00AAF96C /* ImageListStructures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageListStructures.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,8 +253,10 @@
 		CED5E4FB2B28A58100CBC5EF /* ImagesList */ = {
 			isa = PBXGroup;
 			children = (
+				CEFF81FD2BBC7C8700AAF96C /* ImagesListService.swift */,
 				CEC143092B1DF96F002A5C52 /* ImagesListViewController.swift */,
 				CED5E4F92B28A56F00CBC5EF /* ImagesListCell.swift */,
+				CEFF81FF2BBC7C9E00AAF96C /* ImageListStructures.swift */,
 			);
 			path = ImagesList;
 			sourceTree = "<group>";
@@ -419,6 +425,8 @@
 				CE69B5BD2BB962B300547235 /* UIColor.swift in Sources */,
 				CE97E6262B5C5DC500A24BEF /* Constants.swift in Sources */,
 				CE0763AB2B4C40D700F5F9D3 /* SingleImageViewController.swift in Sources */,
+				CEFF82002BBC7C9E00AAF96C /* ImageListStructures.swift in Sources */,
+				CEFF81FE2BBC7C8700AAF96C /* ImagesListService.swift in Sources */,
 				CEE2F3412B6014210011C75B /* WebViewViewController.swift in Sources */,
 				CE69B5BB2BB9349800547235 /* TabBarController.swift in Sources */,
 				CEA44A902B6C9CE400CC040B /* OAuth2Service.swift in Sources */,
