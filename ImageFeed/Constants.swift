@@ -13,6 +13,8 @@ public enum Constants {
     
     static let profileRequestPathString = "/me"
     static let getMethodString = "GET"
+    static let postMethodString = "POST"
+    static let deleteMethodString = "DELETE"
     static let bearerToken = "bearerToken"
     static let getPhoto = "/photos"
 }

@@ -8,13 +8,14 @@
 import Foundation
 
 struct Photo {
-    let id: String
-    let size: CGSize
-    let createdAt: Date?
-    let welcomeDescription: String?
-    let thumbImageURL: String
-    let largeImageURL: String
-    let isLiked: Bool
+  let id: String
+  let size: CGSize
+  let createdAt: Date?
+  let welcomeDescription: String?
+  let thumbImageURL: String
+  let largeImageURL: String
+  var isLiked: Bool
+  let thumbSize: CGSize
 }
 
 
@@ -26,6 +27,17 @@ struct PhotoResult: Codable {
     let likedByUser: Bool
     let urls: Urls
 }
-struct Urls: Codable {
-    let full, small: String
-}
+    
+    // MARK: - Urls
+    struct Urls: Codable {
+        let full, small: String
+    }
+    
+    struct LikeResult: Codable {
+      let photo: PhotoLikeResult
+    }
+
+    struct PhotoLikeResult: Codable {
+      let likedByUser: Bool
+    }
+    
