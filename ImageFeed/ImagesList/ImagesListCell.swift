@@ -26,14 +26,14 @@ final class ImagesListCell: UITableViewCell {
     
     @IBOutlet weak var likeButton: UIButton!
     
-    @IBAction func didTapLikeButton(_ sender: Any) {
+    @IBAction func likeButtonClicked(_ sender: Any) {
         delegate?.imagesListCellDidTapLike(self)
     }
   }
 
 extension ImagesListCell {
     func setIsLiked(_ isLiked: Bool) {
-      let likedImage = isLiked ? UIImage(named: "like") : UIImage(named: "no_like")
+      let likedImage = isLiked ? UIImage(named: "like_button_on") : UIImage(named: "like_button_off")
         likeButton.setImage(likedImage, for: .normal)
     }
 

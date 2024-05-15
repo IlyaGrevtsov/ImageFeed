@@ -143,6 +143,7 @@
 			children = (
 				CE4F1A8A2B94D41100BE67FC /* URLSession extension.swift */,
 				CE1EF0132BACC2E100863ED9 /* Notification.swift */,
+				CE4F1A812B8CEE8700BE67FC /* UIBlockingProgressHUD.swift */,
 				CE69B5BC2BB962B300547235 /* UIColor.swift */,
 				CEB9AA332BE3AC7F00B2A574 /* SnakeCase.swift */,
 			);
@@ -272,7 +273,6 @@
 			children = (
 				CEE2F33C2B5FE2460011C75B /* AuthViewController.swift */,
 				CEE2F3402B6014210011C75B /* WebViewViewController.swift */,
-				CE4F1A812B8CEE8700BE67FC /* UIBlockingProgressHUD.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";

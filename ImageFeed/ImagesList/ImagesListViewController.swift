@@ -3,7 +3,7 @@ import UIKit
 final class ImagesListViewController: UIViewController {
     
     private var imageListServiceObserver: NSObjectProtocol?
-    private var imageListService = ImagesListService.shared
+    private var imageListService = ImageListService.shared
     private var photos: [Photo] = []
     private let ShowSingleImageSegueIdentifier = "ShowSingleImage"
     
@@ -59,14 +59,14 @@ private extension ImagesListViewController {
     }
     
     func setupImageListService() {
-        imageListService.fetchPhotosNextPage()
+        imageListService.fetchPhotoNextPage()
         updateTableViewAnimated()
     }
     
     func notificationObserver() {
         imageListServiceObserver = NotificationCenter.default
             .addObserver(
-                forName: ImagesListService.didChangeNotification,
+                forName: ImageListService.didChangeNotification,
                 object: nil,
                 queue: .main
             ) {[weak self] _ in
@@ -118,7 +118,7 @@ extension ImagesListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
       if indexPath.row + 1 == photos.count {
-        imageListService.fetchPhotosNextPage()
+        imageListService.fetchPhotoNextPage()
       }
     }
 }
@@ -127,21 +127,21 @@ extension ImagesListViewController: UITableViewDataSource {
 
 extension ImagesListViewController: ImagesListCellDelegate {
     func imagesListCellDidTapLike(_ cell: ImagesListCell) {
-      guard let indexPath = tableView.indexPath(for: cell) else { return }
-      let photo = photos[indexPath.row]
-      UIBlockingProgressHUD.show()
-      imageListService.changeLike(photoId: photo.id, isLike: !photo.isLiked) { [weak self ] result in
-        guard let self else { return }
-        switch result {
-        case .success(let isLiked):
-          self.photos[indexPath.row].isLiked = isLiked
-          cell.setIsLiked(isLiked)
-          UIBlockingProgressHUD.dismiss()
-        case .failure(let error):
-          UIBlockingProgressHUD.dismiss()
-          print("\(error.localizedDescription)")
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        let photo = photos[indexPath.row]
+       UIBlockingProgressHUD.show()
+       imageListService.changeLike(photoId: photo.id, isLike: !photo.isLiked) { result in
+          switch result {
+          case .success:
+             self.photos = self.imageListService.photos
+              cell.setIsLiked(self.photos[indexPath.row].isLiked)
+             UIBlockingProgressHUD.dismiss()
+          case .failure:
+             UIBlockingProgressHUD.dismiss()
+//              print("\(error.localizedDescription)")
+          }
         }
-      }
     }
+    
   }
 
