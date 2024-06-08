@@ -2,7 +2,7 @@ import UIKit
 import Kingfisher
 
 protocol ImagesListCellDelegate: AnyObject {
-  func imagesListCellDidTapLike(_ cell: ImagesListCell)
+    func imagesListCellDidTapLike(_ cell: ImagesListCell)
 }
 final class ImagesListCell: UITableViewCell {
     override func prepareForReuse() {
@@ -18,7 +18,7 @@ final class ImagesListCell: UITableViewCell {
         return dateFormatter
     }()
     weak var delegate: ImagesListCellDelegate?
-
+    
     
     @IBOutlet weak var dateLabel: UILabel!
     
@@ -29,14 +29,14 @@ final class ImagesListCell: UITableViewCell {
     @IBAction func likeButtonClicked(_ sender: Any) {
         delegate?.imagesListCellDidTapLike(self)
     }
-  }
+}
 
 extension ImagesListCell {
     func setIsLiked(_ isLiked: Bool) {
-      let likedImage = isLiked ? UIImage(named: "like_button_on") : UIImage(named: "like_button_off")
+        let likedImage = isLiked ? UIImage(named: "like_button_on") : UIImage(named: "like_button_off")
         likeButton.setImage(likedImage, for: .normal)
     }
-
+    
     func loadPhotos (from photo: Photo) -> Bool {
         var status = false
         

@@ -28,7 +28,7 @@ final class SplashViewController: UIViewController {
         alertPresenter = AlertPresenter(viewController: self)
         setupSplashViewController()
         imageListService.fetchPhotoNextPage()
-
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
