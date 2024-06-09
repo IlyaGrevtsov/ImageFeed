@@ -82,9 +82,9 @@ final class OAuth2Service {
         
         var urlComponents = URLComponents(string: OAuth2Constants.authTokenURL)
         urlComponents?.queryItems = [
-            URLQueryItem(name: OAuth2Constants.clientID, value: Constants.accessKey),
-            URLQueryItem(name: OAuth2Constants.clientSecret, value: Constants.secretKey),
-            URLQueryItem(name: OAuth2Constants.redirectURI, value: Constants.redirectURI),
+            URLQueryItem(name: OAuth2Constants.clientID, value: AccessKey),
+            URLQueryItem(name: OAuth2Constants.clientSecret, value: SecretKey),
+            URLQueryItem(name: OAuth2Constants.redirectURI, value: RedirectURI),
             URLQueryItem(name: OAuth2Constants.code, value: code),
             URLQueryItem(name: OAuth2Constants.grandType, value: OAuth2Constants.requestGrantType)
         ]
@@ -98,8 +98,21 @@ final class OAuth2Service {
         
         return request
     }
+    
+    private struct OAuthTokenResponseBody: Codable {
+        let accessToken: String
+        let tokenType: String
+        let scope: String
+        let createdAt: Int
+        
+        enum CodingKeys: String, CodingKey {
+            case accessToken = "access_token"
+            case tokenType = "token_type"
+            case scope
+            case createdAt = "created_at"
+        }
+    }
 }
-
 
 
 

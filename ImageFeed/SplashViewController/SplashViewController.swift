@@ -6,7 +6,6 @@ final class SplashViewController: UIViewController {
     
     private let profileService = ProfileService.shared
     private let profileImageService = ProfileImageService.shared
-    private let imageListService = ImageListService.shared
     private let authService = OAuth2Service()
     private var alertPresenter: AlertPresenting?
     private var wasChecked = false
@@ -27,8 +26,6 @@ final class SplashViewController: UIViewController {
         
         alertPresenter = AlertPresenter(viewController: self)
         setupSplashViewController()
-        imageListService.fetchPhotoNextPage()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {

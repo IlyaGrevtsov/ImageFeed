@@ -33,7 +33,7 @@ final class ProfileImageService {
                 NotificationCenter.default.post(
                     name: ProfileImageService.didChangeNotification,
                     object: self,
-                    userInfo: [Notification.userInfoImageURLKey: mediumPhoto])
+                    userInfo: ["URL": mediumPhoto])
             case .failure(let error):
                 completion(.failure(error))
             }

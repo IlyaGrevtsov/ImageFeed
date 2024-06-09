@@ -12,18 +12,6 @@ final class WebViewViewController: UIViewController {
     @IBOutlet private var webView: WKWebView!
     @IBOutlet private var progressView: UIProgressView!
     
-    private struct WebKeyConstant {
-        static let clientID = "client_id"
-        static let redirectURI = "redirect_uri"
-        static let responseType = "response_type"
-        static let scope = "scope"
-    }
-    private struct WebConstant {
-        static let authURL = "https://unsplash.com/oauth/authorize"
-        static let autorizedPath = "/oauth/authorize/native"
-        static let code = "code"
-    }
-    
     weak var delegate: WebViewViewControllerDelegate?
     
     override func viewDidLoad() {
@@ -33,10 +21,10 @@ final class WebViewViewController: UIViewController {
         
         var urlComponents = URLComponents(string: UnsplashAuthorizeURLString)!
         urlComponents.queryItems = [
-            URLQueryItem(name: WebKeyConstant.clientID, value: Constants.accessKey),
-            URLQueryItem(name: WebKeyConstant.redirectURI, value: Constants.redirectURI),
-            URLQueryItem(name: WebKeyConstant.responseType, value: WebConstant.code),
-            URLQueryItem(name: WebKeyConstant.scope, value: Constants.accessScope)
+            URLQueryItem(name: "client_id", value: AccessKey),
+            URLQueryItem(name: "redirect_uri", value: RedirectURI),
+            URLQueryItem(name: "response_type", value: "code"),
+            URLQueryItem(name: "scope", value: AccessScope)
         ]
         let url = urlComponents.url!
         
