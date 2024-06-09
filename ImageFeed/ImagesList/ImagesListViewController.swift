@@ -5,7 +5,7 @@ final class ImagesListViewController: UIViewController {
     private var imageListServiceObserver: NSObjectProtocol?
     private var imageListService = ImageListService.shared
     private var photos: [Photo] = []
-    private let ShowSingleImageSegueIdentifier = "ShowSingleImage"
+    private let showSingleImageSegueIdentifier = "ShowSingleImage"
     
     
     @IBOutlet private var tableView: UITableView!
@@ -22,7 +22,7 @@ final class ImagesListViewController: UIViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == ShowSingleImageSegueIdentifier {
+        if segue.identifier == showSingleImageSegueIdentifier {
             guard
                 let viewController = segue.destination as? SingleImageViewController,
                 let indexPath = sender as? IndexPath
@@ -47,7 +47,7 @@ extension ImagesListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: ShowSingleImageSegueIdentifier, sender: indexPath)
+        performSegue(withIdentifier: showSingleImageSegueIdentifier, sender: indexPath)
     }
 }
 
@@ -125,7 +125,7 @@ extension ImagesListViewController: UITableViewDataSource {
 
 // MARK: - ImagesListCellDelegate
 
-extension ImagesListViewController: ImagesListCellDelegate {
+extension ImagesListViewController: imagesListCellDelegate {
     func imagesListCellDidTapLike(_ cell: ImagesListCell) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
         let photo = photos[indexPath.row]

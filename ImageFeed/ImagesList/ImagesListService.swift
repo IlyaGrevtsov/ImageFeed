@@ -1,21 +1,16 @@
 import Foundation
 
-protocol ImageListLoading: AnyObject {
+protocol imageListLoading: AnyObject {
     func fetchPhotoNextPage()
     func resetPhotos()
     func changeLike(photoId: String, isLike: Bool, _ completion: @escaping (Result<Bool, Error>) -> Void)
 }
-
-
 
 final class ImageListService {
     
     static let shared = ImageListService()
     static let didChangeNotification = Notification.Name(rawValue: "ImageListServiceDidChange")
     static let dateFormatter = ISO8601DateFormatter()
-    
-    
-    
     
     private let session = URLSession.shared
     private let requestBuilder = URLRequestBuilder.shared
@@ -55,7 +50,7 @@ final class ImageListService {
     }
 }
 
-extension ImageListService : ImageListLoading {
+extension ImageListService : imageListLoading {
     
     
     func changeLike(photoId: String, isLike: Bool, _ completion: @escaping (Result<Bool, Error>) -> Void) {

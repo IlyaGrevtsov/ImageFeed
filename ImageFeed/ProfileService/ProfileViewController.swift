@@ -188,6 +188,6 @@ private extension ProfileViewController {
         let splashViewController = SplashViewController()
         window.rootViewController = splashViewController
     }
-    
+// MARK: -Animation:
     
 }
