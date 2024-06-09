@@ -9,6 +9,7 @@ enum NetworkError: Error {
 }
 
 extension URLSession {
+    
     func objectTask<T: Decodable>(
         for request: URLRequest,
         completion: @escaping (Result<T, Error>) -> Void
@@ -25,7 +26,7 @@ extension URLSession {
             if let data, let response, let statusCode = (response as? HTTPURLResponse)?.statusCode {
                 if 200..<300 ~= statusCode {
                     do {
-                        let decoder = JSONDecoder()
+                        let decoder = SnakeCaseJSONDecoder()
                         let result = try decoder.decode(T.self, from: data)
                         completionOnMainQueue(.success(result))
                     } catch {
