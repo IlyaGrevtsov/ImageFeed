@@ -1,5 +1,6 @@
 import UIKit
 import Kingfisher
+import WebKit
 
 final class ProfileViewController: UIViewController {
     private let userPickImageView = UIImageView()
@@ -11,6 +12,7 @@ final class ProfileViewController: UIViewController {
     private let profileService = ProfileService.shared
     private let profileImageService = ProfileImageService.shared
     private let storage = OAuth2TokenStorage.shared
+    private var alertPresenter: AlertPresenting?
     
     private var profileImageServiceObserver: NSObjectProtocol?
     
@@ -20,6 +22,21 @@ final class ProfileViewController: UIViewController {
         prepareUI()
         checkAvatar ()
         loadProfile()
+        alertPresenter = AlertPresenter(viewController: self)
+    }
+    func showAlert() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            let alertModel = AlertModel(
+                title: "Выход",
+                message: "Уверены, что хотите выйти?",
+                buttonText: "Да",
+                completion: { self.resetAccount() },
+                secondButtonText: "Нет",
+                secondCompletion: { self.dismiss(animated: true) }
+            )
+            self.alertPresenter?.showAlert(for: alertModel)
+        }
     }
     
     func checkAvatar () {
@@ -129,13 +146,19 @@ final class ProfileViewController: UIViewController {
     
     @objc
     private func didTapButton() {
+        showAlert()
         print("Выход из профиля")
-        resetToken()
-        resetView()
-        switchSplash()
+        
     }
 }
 private extension ProfileViewController {
+    func resetAccount() {
+        resetToken()
+        resetView()
+        resetPhotos()
+        resetCookies()
+        switchSplash()
+    }
     func resetToken(){
         guard storage.removeToken() else {
             assertionFailure("Can't remove token")
@@ -146,11 +169,25 @@ private extension ProfileViewController {
         self.labelName.text = "User Name"
         self.labelLogin.text = "@login"
         self.descriptionLabel.text = "bio"
-        self.userPickImageView.image = UIImage(systemName: "userPickImageView")
+        self.userPickImageView.image = UIImage(systemName: "person.fill.questionmark")
+    }
+    func resetPhotos() {
+        ImageListService.shared.resetPhotos()
+    }
+    
+    func resetCookies() {
+        HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
+        WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+            records.forEach { record in
+                WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record]) { }
+            }
+        }
     }
     func switchSplash () {
         guard let window = UIApplication.shared.windows.first else {preconditionFailure("Invalid Configuration")}
         let splashViewController = SplashViewController()
         window.rootViewController = splashViewController
     }
+// MARK: -Animation:
+    
 }
