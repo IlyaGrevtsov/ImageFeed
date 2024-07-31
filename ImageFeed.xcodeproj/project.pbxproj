@@ -33,9 +33,6 @@
 		CEC1430D2B1DF96F002A5C52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEC1430B2B1DF96F002A5C52 /* Main.storyboard */; };
 		CEC1430F2B1DF972002A5C52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC1430E2B1DF972002A5C52 /* Assets.xcassets */; };
 		CEC143122B1DF972002A5C52 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEC143102B1DF972002A5C52 /* LaunchScreen.storyboard */; };
-		CEC1431D2B1DF973002A5C52 /* ImageFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC1431C2B1DF973002A5C52 /* ImageFeedTests.swift */; };
-		CEC143272B1DF973002A5C52 /* ImageFeedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC143262B1DF973002A5C52 /* ImageFeedUITests.swift */; };
-		CEC143292B1DF973002A5C52 /* ImageFeedUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC143282B1DF973002A5C52 /* ImageFeedUITestsLaunchTests.swift */; };
 		CECB2C6E2B99C27200BFDAAC /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECB2C6D2B99C27200BFDAAC /* AlertModel.swift */; };
 		CECB2C702B99C2BA00BFDAAC /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECB2C6F2B99C2BA00BFDAAC /* AlertPresenter.swift */; };
 		CED5E4FA2B28A56F00CBC5EF /* ImagesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED5E4F92B28A56F00CBC5EF /* ImagesListCell.swift */; };
@@ -89,10 +86,7 @@
 		CEC143112B1DF972002A5C52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEC143132B1DF972002A5C52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEC143182B1DF973002A5C52 /* ImageFeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageFeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CEC1431C2B1DF973002A5C52 /* ImageFeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFeedTests.swift; sourceTree = "<group>"; };
 		CEC143222B1DF973002A5C52 /* ImageFeedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageFeedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CEC143262B1DF973002A5C52 /* ImageFeedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFeedUITests.swift; sourceTree = "<group>"; };
-		CEC143282B1DF973002A5C52 /* ImageFeedUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFeedUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CECB2C6D2B99C27200BFDAAC /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 		CECB2C6F2B99C2BA00BFDAAC /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		CED5E4F92B28A56F00CBC5EF /* ImagesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListCell.swift; sourceTree = "<group>"; };
@@ -192,8 +186,6 @@
 			isa = PBXGroup;
 			children = (
 				CEC143042B1DF96F002A5C52 /* ImageFeed */,
-				CEC1431B2B1DF973002A5C52 /* ImageFeedTests */,
-				CEC143252B1DF973002A5C52 /* ImageFeedUITests */,
 				CEC143032B1DF96F002A5C52 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -229,23 +221,6 @@
 				CEC143132B1DF972002A5C52 /* Info.plist */,
 			);
 			path = ImageFeed;
-			sourceTree = "<group>";
-		};
-		CEC1431B2B1DF973002A5C52 /* ImageFeedTests */ = {
-			isa = PBXGroup;
-			children = (
-				CEC1431C2B1DF973002A5C52 /* ImageFeedTests.swift */,
-			);
-			path = ImageFeedTests;
-			sourceTree = "<group>";
-		};
-		CEC143252B1DF973002A5C52 /* ImageFeedUITests */ = {
-			isa = PBXGroup;
-			children = (
-				CEC143262B1DF973002A5C52 /* ImageFeedUITests.swift */,
-				CEC143282B1DF973002A5C52 /* ImageFeedUITestsLaunchTests.swift */,
-			);
-			path = ImageFeedUITests;
 			sourceTree = "<group>";
 		};
 		CECB2C6C2B99C25300BFDAAC /* Alert */ = {
@@ -452,7 +427,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEC1431D2B1DF973002A5C52 /* ImageFeedTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,8 +434,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEC143292B1DF973002A5C52 /* ImageFeedUITestsLaunchTests.swift in Sources */,
-				CEC143272B1DF973002A5C52 /* ImageFeedUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
