@@ -1,13 +1,13 @@
 import UIKit
 import Kingfisher
 
-protocol imagesListCellDelegate: AnyObject {
+protocol ImagesListCellDelegate: AnyObject {
     func imagesListCellDidTapLike(_ cell: ImagesListCell)
 }
-final class ImagesListCell: UITableViewCell {
-    override func prepareForReuse() {
+public final class ImagesListCell: UITableViewCell {
+    public override func prepareForReuse() {
         super.prepareForReuse()
-        
+        setIsLiked(false)
         cellImage.kf.cancelDownloadTask()
     }
     static let reuseIdentifier = "ImagesListCell"
@@ -17,7 +17,17 @@ final class ImagesListCell: UITableViewCell {
         dateFormatter.dateFormat = "dd MMMM YYYY"
         return dateFormatter
     }()
-    weak var delegate: imagesListCellDelegate?
+    
+    
+//}
+//private lazy var dateFormatter: DateFormatter = {
+//    let formatter = DateFormatter()
+//    formatter.dateStyle = .long
+//    formatter.timeStyle = .none
+//    return formatter
+//}()
+    
+    weak var delegate: ImagesListCellDelegate?
     
     
     @IBOutlet weak var dateLabel: UILabel!
@@ -43,11 +53,10 @@ final class ImagesListCell: UITableViewCell {
         })
         
         delegate?.imagesListCellDidTapLike(self)
-        
     }
 }
-
 extension ImagesListCell {
+    
     func setIsLiked(_ isLiked: Bool) {
         let likedImage = isLiked ? UIImage(named: "like_button_on") : UIImage(named: "like_button_off")
         likeButton.setImage(likedImage, for: .normal)
@@ -63,7 +72,7 @@ extension ImagesListCell {
         }
         
         setIsLiked(photo.isLiked)
-
+        
         guard let photoUrl = URL(string: photo.thumbImageURL) else {return status}
         
         cellImage.kf.indicatorType = .activity

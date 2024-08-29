@@ -3,7 +3,8 @@ import Foundation
 protocol imageListLoading: AnyObject {
     func fetchPhotoNextPage()
     func resetPhotos()
-    func changeLike(photoId: String, isLike: Bool, _ completion: @escaping (Result<Bool, Error>) -> Void)
+    func changeLike(photoId: String, indexPath: IndexPath, isLike: Bool, _ completion: @escaping (Result<Bool, Error>) -> Void)
+
 }
 
 final class ImageListService {
@@ -51,10 +52,12 @@ final class ImageListService {
 }
 
 extension ImageListService : imageListLoading {
-    
-    
-    func changeLike(photoId: String, isLike: Bool, _ completion: @escaping (Result<Bool, Error>) -> Void) {
-        assert(Thread.isMainThread)
+
+    func changeLike(photoId: String,indexPath: IndexPath, isLike: Bool, _ completion: @escaping (Result<Bool, any Error>) -> Void) {
+        guard Thread.isMainThread else {
+            assertionFailure("Change Like не в главном потоке")
+            return
+        }
         guard currentTask == nil else { return }
         let method = isLike ? Constants.postMethodString : Constants.deleteMethodString
         
@@ -103,10 +106,7 @@ extension ImageListService : imageListLoading {
     func fetchPhotoNextPage() {
         assert(Thread.isMainThread)
         
-        guard currentTask == nil else {
-            debugPrint("Race Condition - reject repeated photos request")
-            return
-        }
+        guard currentTask == nil else { return }
         let nextPage = makeNextPageNumber()
         
         guard let request = makePhotoRequest(page: nextPage) else {
