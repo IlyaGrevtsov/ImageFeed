@@ -5,25 +5,24 @@
 //  Created by Илья on 27.08.2024.
 //
 @testable import ImageFeed
-import Foundation
 import XCTest
 
 final class ImageListTest: XCTestCase {
     
     let viewController = ImagesListViewController()
+
     let presenter = ImageListPresenterSpy()
     let indexPath = IndexPath (row: 1, section: 0)
     
-    //Given
+    //given
     override func setUpWithError() throws {
         viewController.presenter = presenter
         presenter.view = viewController
      }
     
     func testViewDidloadCalled () {
-        //When
+        //when
         _ = viewController.view
-        
         //Then
         XCTAssertTrue(presenter.viewDidLoadCalled)
     }

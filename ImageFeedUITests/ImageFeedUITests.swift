@@ -2,38 +2,40 @@
 //  ImageFeedUITests.swift
 //  ImageFeedUITests
 //
-//  Created by user on 04.12.2023.
+//  Created by Илья on 05.09.2024.
 //
 
 import XCTest
 
 final class ImageFeedUITests: XCTestCase {
+    
+    private let app = XCUIApplication() // переменная приложения
 
     override func setUpWithError() throws {
 
-        continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        continueAfterFailure = false // настройка выполнения тестов, которая прекратит выполнения тестов, если в тесте что-то пошло не так
+        
+        app.launch() // запускаем приложение перед каждым тестом
+    }
+    
+    func testAuth() throws {
+        app.buttons["Authenticate"].tap()
+        let webView = app.webViews["UnsplashWebView"]
+        webView.waitForExistence(timeout: 5)
+        let loginTextFiled = webView.descendants(matching: .textField).element
+        let passwordTextFiled = webView.descendants(matching: .secureTextField).element
+        loginTextFiled.typeText("")
+        webView.swipeUp()
+        print(app.debugDescription)
+        
+        
+    }
+    func testFeed() throws {
+        
+    }
+    
+    func testProfile() throws {
+        
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
-    }
 }

@@ -10,7 +10,8 @@ import ImageFeed
 
 final class ImageListPresenterSpy: ImageListPresenterProtocol {
     
-    var view: (any ImageFeed.ImagesListViewControllerProtocol)?
+    
+    var view: ImageFeed.ImagesListViewControllerProtocol?
     var photosCount: Int = 0
     
     var viewDidLoadCalled = false
