@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uaA-vw-G6E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uaA-vw-G6E">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -184,6 +184,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="nho-iH-IvU"/>
                     <connections>
+                        <outlet property="backToGallery" destination="XRU-tK-ve3" id="XJT-kZ-NRn"/>
                         <outlet property="imageView" destination="pZz-N7-Mcu" id="yp2-BD-hrD"/>
                         <outlet property="scrollView" destination="X8v-Ow-oyG" id="LSW-cb-pME"/>
                     </connections>
@@ -249,6 +250,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5mT-Pp-TEk"/>
+                    <connections>
+                        <outlet property="authButton" destination="Z9C-RK-cB9" id="JgW-TQ-BRi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qbd-Ki-Q8g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

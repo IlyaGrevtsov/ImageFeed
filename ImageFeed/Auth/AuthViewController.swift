@@ -7,7 +7,14 @@ protocol AuthViewControllerDelegate: AnyObject {
 }
 
 final class AuthViewController: UIViewController {
+    
+    @IBOutlet weak var authButton: UIButton!
+    
     private let showWebViewSegueIdentifier = "ShowWebView"
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        authButton.accessibilityIdentifier = "Authenticate"
+    }
     
     weak var delegate: AuthViewControllerDelegate?
     

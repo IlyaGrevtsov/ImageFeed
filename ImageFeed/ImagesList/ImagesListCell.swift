@@ -18,15 +18,6 @@ public final class ImagesListCell: UITableViewCell {
         return dateFormatter
     }()
     
-    
-//}
-//private lazy var dateFormatter: DateFormatter = {
-//    let formatter = DateFormatter()
-//    formatter.dateStyle = .long
-//    formatter.timeStyle = .none
-//    return formatter
-//}()
-    
     weak var delegate: ImagesListCellDelegate?
     
     
@@ -64,7 +55,7 @@ extension ImagesListCell {
     
     func loadPhotos (from photo: Photo) -> Bool {
         var status = false
-        
+        likeButton.accessibilityIdentifier = "likeButton"
         if let photoDate = photo.createdAt {
             dateLabel.text = dateFormatter.string(from: photoDate)
         } else {

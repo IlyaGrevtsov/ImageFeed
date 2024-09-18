@@ -18,7 +18,7 @@ final class ImageListService {
     
     private var currentTask : URLSessionTask?
     private var lastLoadedPage: Int?
-    private (set) var photos: [Photo] = []
+    private(set) var photos: [Photo] = []
     private init() { }
     
     func makePhotoRequest(page: Int) -> URLRequest? {

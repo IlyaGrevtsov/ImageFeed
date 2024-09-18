@@ -33,7 +33,7 @@ final class OAuth2Service {
         self.builder = builder
     }
     
-    private (set) var authToken: String? {
+    private(set) var authToken: String? {
         get {
             return OAuth2TokenStorage().token
         }

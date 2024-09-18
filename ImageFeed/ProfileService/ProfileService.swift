@@ -6,7 +6,7 @@ protocol ProfileLoading: AnyObject {
 final class ProfileService {
     static let shared = ProfileService()
     private var currentTask: URLSessionTask?
-    private (set) var profile: Profile?
+    private(set) var profile: Profile?
     private let urlSession = URLSession.shared
     private let requestBuilder: URLRequestBuilder
     
