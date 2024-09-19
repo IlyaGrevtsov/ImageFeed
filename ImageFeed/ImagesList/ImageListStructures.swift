@@ -7,15 +7,15 @@
 
 import Foundation
 
-struct Photo {
-    let id: String
-    let size: CGSize
-    let createdAt: Date?
-    let welcomeDescription: String?
-    let thumbImageURL: String
-    let largeImageURL: String
-    var isLiked: Bool
-    let thumbSize: CGSize
+public struct Photo {
+    public let id: String
+    public let size: CGSize
+    public let createdAt: Date?
+    public let welcomeDescription: String?
+    public let thumbImageURL: String
+    public let largeImageURL: String
+    public var isLiked: Bool
+    public let thumbSize: CGSize
 }
 
 

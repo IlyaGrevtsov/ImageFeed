@@ -1,12 +1,11 @@
 import Foundation
 
-protocol ImageListLoading: AnyObject {
+protocol imageListLoading: AnyObject {
     func fetchPhotoNextPage()
     func resetPhotos()
-    func changeLike(photoId: String, isLike: Bool, _ completion: @escaping (Result<Bool, Error>) -> Void)
+    func changeLike(photoId: String, indexPath: IndexPath, isLike: Bool, _ completion: @escaping (Result<Bool, Error>) -> Void)
+
 }
-
-
 
 final class ImageListService {
     
@@ -14,15 +13,12 @@ final class ImageListService {
     static let didChangeNotification = Notification.Name(rawValue: "ImageListServiceDidChange")
     static let dateFormatter = ISO8601DateFormatter()
     
-    
-    
-    
     private let session = URLSession.shared
     private let requestBuilder = URLRequestBuilder.shared
     
     private var currentTask : URLSessionTask?
     private var lastLoadedPage: Int?
-    private (set) var photos: [Photo] = []
+    private(set) var photos: [Photo] = []
     private init() { }
     
     func makePhotoRequest(page: Int) -> URLRequest? {
@@ -55,11 +51,13 @@ final class ImageListService {
     }
 }
 
-extension ImageListService : ImageListLoading {
-    
-    
-    func changeLike(photoId: String, isLike: Bool, _ completion: @escaping (Result<Bool, Error>) -> Void) {
-        assert(Thread.isMainThread)
+extension ImageListService : imageListLoading {
+
+    func changeLike(photoId: String,indexPath: IndexPath, isLike: Bool, _ completion: @escaping (Result<Bool, any Error>) -> Void) {
+        guard Thread.isMainThread else {
+            assertionFailure("Change Like не в главном потоке")
+            return
+        }
         guard currentTask == nil else { return }
         let method = isLike ? Constants.postMethodString : Constants.deleteMethodString
         
@@ -108,10 +106,7 @@ extension ImageListService : ImageListLoading {
     func fetchPhotoNextPage() {
         assert(Thread.isMainThread)
         
-        guard currentTask == nil else {
-            debugPrint("Race Condition - reject repeated photos request")
-            return
-        }
+        guard currentTask == nil else { return }
         let nextPage = makeNextPageNumber()
         
         guard let request = makePhotoRequest(page: nextPage) else {

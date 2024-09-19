@@ -4,10 +4,10 @@ import Kingfisher
 protocol ImagesListCellDelegate: AnyObject {
     func imagesListCellDidTapLike(_ cell: ImagesListCell)
 }
-final class ImagesListCell: UITableViewCell {
-    override func prepareForReuse() {
+public final class ImagesListCell: UITableViewCell {
+    public override func prepareForReuse() {
         super.prepareForReuse()
-        
+        setIsLiked(false)
         cellImage.kf.cancelDownloadTask()
     }
     static let reuseIdentifier = "ImagesListCell"
@@ -17,6 +17,7 @@ final class ImagesListCell: UITableViewCell {
         dateFormatter.dateFormat = "dd MMMM YYYY"
         return dateFormatter
     }()
+    
     weak var delegate: ImagesListCellDelegate?
     
     
@@ -27,11 +28,26 @@ final class ImagesListCell: UITableViewCell {
     @IBOutlet weak var likeButton: UIButton!
     
     @IBAction func likeButtonClicked(_ sender: Any) {
+        UIView.animateKeyframes(withDuration: 1, delay: 0, animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.25, animations: {
+                self.likeButton.transform = CGAffineTransform (scaleX: 1.5, y: 1.5)
+            })
+            UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 0.25, animations: {
+                self.likeButton.transform = .identity
+            })
+            UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.25, animations: {
+                self.likeButton.transform = CGAffineTransform (scaleX: 1.2, y: 1.2)
+            })
+            UIView.addKeyframe(withRelativeStartTime: 0.75, relativeDuration: 0.25, animations: {
+                self.likeButton.transform = .identity
+            })
+        })
+        
         delegate?.imagesListCellDidTapLike(self)
     }
 }
-
 extension ImagesListCell {
+    
     func setIsLiked(_ isLiked: Bool) {
         let likedImage = isLiked ? UIImage(named: "like_button_on") : UIImage(named: "like_button_off")
         likeButton.setImage(likedImage, for: .normal)
@@ -39,12 +55,14 @@ extension ImagesListCell {
     
     func loadPhotos (from photo: Photo) -> Bool {
         var status = false
-        
+        likeButton.accessibilityIdentifier = "likeButton"
         if let photoDate = photo.createdAt {
             dateLabel.text = dateFormatter.string(from: photoDate)
         } else {
             dateLabel.text = ""
         }
+        
+        setIsLiked(photo.isLiked)
         
         guard let photoUrl = URL(string: photo.thumbImageURL) else {return status}
         

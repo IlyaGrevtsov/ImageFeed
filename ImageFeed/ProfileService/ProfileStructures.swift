@@ -1,17 +1,17 @@
 import Foundation
 
-struct ProfileResult: Codable {
+public struct ProfileResult: Codable {
     let username: String
     let firstName: String?
     let lastName: String?
     let bio: String?
     let profileImage: ProfileImage?
 }
-struct Profile {
+public struct Profile {
     let username: String
-    let name: String
-    let loginName: String
-    let bio: String?
+    public let name: String
+    public let loginName: String
+    public let bio: String?
 }
 
 struct ProfileImage: Codable {

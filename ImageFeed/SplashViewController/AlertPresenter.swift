@@ -24,10 +24,20 @@ extension AlertPresenter: AlertPresenting {
             title: result.title,
             message: result.message,
             preferredStyle: .alert)
+        
+        alert.view.accessibilityIdentifier = "Alert"
+
         let alertAction = UIAlertAction(title: result.buttonText, style: .default) { _ in
             result.completion?()
         }
         alert.addAction(alertAction)
+        
+        if let secondButtonText = result.secondButtonText {
+            let secondAction = UIAlertAction(title: secondButtonText, style: .default) { _ in
+                result.secondCompletion?()
+            }
+            alert.addAction(secondAction)
+        }
         
         if var topController = UIApplication.shared.windows[0].rootViewController {
             while let presentedViewController = topController.presentedViewController {

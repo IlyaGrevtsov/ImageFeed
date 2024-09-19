@@ -2,40 +2,88 @@
 //  ImageFeedUITests.swift
 //  ImageFeedUITests
 //
-//  Created by user on 04.12.2023.
+//  Created by Илья on 05.09.2024.
 //
 
 import XCTest
 
 final class ImageFeedUITests: XCTestCase {
+    
+    private let app = XCUIApplication() // переменная приложения
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
 
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        continueAfterFailure = false // настройка выполнения тестов, которая прекратит выполнения тестов, если в тесте что-то пошло не так
+        
+        app.launch() // запускаем приложение перед каждым тестом
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testAuth() throws {
+        XCTAssertTrue(app.buttons["Authenticate"].waitForExistence(timeout: 3))
+        app.buttons["Authenticate"].tap()
+        
+        let webView = app.webViews["UnsplashWebView"]
+        XCTAssertTrue(webView.waitForExistence(timeout: 3))
+        
+        let loginTextFiled = webView.descendants(matching: .textField).element
+        XCTAssertTrue(loginTextFiled.waitForExistence(timeout: 5))
+        loginTextFiled.tap()
+        loginTextFiled.typeText("email")
+        webView.swipeUp()
+        
+        let passwordTextFiled = webView.descendants(matching: .secureTextField).element
+        XCTAssertTrue(passwordTextFiled.waitForExistence(timeout: 5))
+        passwordTextFiled.tap()
+        passwordTextFiled.typeText("pass")
+        webView.swipeUp()
+        
+        webView.buttons["Login"].tap()
+        
+        let tablesQuery = app.tables
+        let cell = tablesQuery.children(matching: .cell).element(boundBy: 0)
+        XCTAssertTrue(cell.waitForExistence(timeout: 5))
+        
+        print(app.debugDescription)
+        
+        
+    }
+    func testFeed() throws {
+      XCTAssertTrue(app.tabBars.buttons.element(boundBy: 0).waitForExistence(timeout: 3))
+
+      let tableQuery = app.tables
+      let cell = tableQuery.children(matching: .cell).element(boundBy: 0)
+      XCTAssertTrue(cell.waitForExistence(timeout: 3))
+      cell.swipeDown()
+      sleep(2)
+
+      let cellTwo = tableQuery.children(matching: .cell).element(boundBy: 1)
+      XCTAssertTrue(cell.waitForExistence(timeout: 3))
+      XCTAssertTrue(cell.buttons["likeButton"].waitForExistence(timeout: 1))
+      cellTwo.buttons["likeButton"].tap()
+      sleep(3)
+      cellTwo.buttons["likeButton"].tap()
+      sleep(3)
+
+      cellTwo.tap()
+      let image = app.scrollViews.images.element(boundBy: 0)
+      image.pinch(withScale: 3, velocity: 1)
+      image.pinch(withScale: 0.5, velocity: -1)
+
+      XCTAssertTrue(app.buttons["backtoGallery"].waitForExistence(timeout: 3))
+      app.buttons["backtoGallery"].tap()
+    }
+    func testProfile() throws {
+        sleep(3)
+        app.tabBars.buttons.element(boundBy: 1).tap()
+        
+        XCTAssertTrue(app.staticTexts["Name Last Name"].exists)
+        XCTAssertTrue(app.staticTexts["login"].exists)
+        
+        app.buttons["logoutButton"].tap()
+        
+        app.alerts["Alert"].scrollViews.otherElements.buttons["Да"].tap()
+        
+        XCTAssertTrue(app.buttons["Authenticate"].waitForExistence(timeout: 3))
     }
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
-    }
 }

@@ -7,22 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FD768BBD-5BC6-40C2-80C6-40625CB08402"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ImageFeed/Auth/WebViewViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "6"
-            endingLineNumber = "6"
-            landmarkName = "WebViewViewControllerDelegate"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "EABEF02F-9752-4A4C-8B0B-17C3E00AE6E5"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -51,32 +35,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FD9B33A5-9781-4001-8370-0E96EACA7D35"
+            uuid = "F0F81511-5E03-4FCE-B2D7-4D55D8CC7EC0"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ImageFeed/ProfileService/ProfileViewController.swift"
+            filePath = "Image Feed Unit Tests/WebViewTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "24"
             endingLineNumber = "24"
-            landmarkName = "viewDidLoad()"
+            landmarkName = "testViewControllerCallsViewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "85B706A9-51D5-452F-A0DC-4B152FE31373"
-            shouldBeEnabled = "Yes"
+            uuid = "0B0B6CD4-EA1E-4047-8CE6-CBA11328A446"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ImageFeed/ProfileService/ProfileViewController.swift"
+            filePath = "Image Feed Unit Tests/ImageListTest.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "updateAvatar(notification:)"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "testViewDidloadCalled()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
