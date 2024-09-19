@@ -52,7 +52,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "0B0B6CD4-EA1E-4047-8CE6-CBA11328A446"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Image Feed Unit Tests/ImageListTest.swift"

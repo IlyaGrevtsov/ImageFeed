@@ -22,7 +22,7 @@ final class ImageListTest: XCTestCase {
     
     func testViewDidloadCalled () {
         //when
-        _ = viewController.view
+//        _ = viewController.view
         //Then
         XCTAssertTrue(presenter.viewDidLoadCalled)
     }
@@ -38,8 +38,9 @@ final class ImageListTest: XCTestCase {
     
     func testNeedUploadImage () {
         //when
-        _ = viewController.view
+//        _ = viewController.view
         presenter.needUploadImage(indexPath: indexPath)
+        presenter.heightForRowAt(indexPath: indexPath)
         
         //then
         XCTAssertTrue(presenter.needUploadImageCalled)
@@ -47,7 +48,7 @@ final class ImageListTest: XCTestCase {
     }
     func testHeightForRowAt () {
         //when
-        _ = viewController.view
+//        _ = viewController.view
         let result = presenter.heightForRowAt(indexPath: indexPath)
         //then
         XCTAssertTrue(presenter.heightForRowAtCalled)
@@ -56,7 +57,7 @@ final class ImageListTest: XCTestCase {
     }
     func testReturnPhotoModelAt() {
         //when
-        _ = viewController.view
+//        _ = viewController.view
         _ = presenter.returnPhotoModelAt(indexPath: indexPath)
         //then
         XCTAssertTrue(presenter.returnPhotoModelAtCalled)
